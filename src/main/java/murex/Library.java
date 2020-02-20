@@ -72,16 +72,18 @@ public final class Library {
         return booksScore;
     }
 
-    public void computeScore(int maxDays) {
+    public void computeCurrentScore(int maxDays) {
         long score = 0;
         int maxBooks = (dailyShipCapacity * (maxDays - signupCost));
         for (int i = 0; (i < books.length) && (i < maxBooks); i++) {
-            score += books[i].getScore();
+            if (!books[i].isScanned()) {
+                score += books[i].getScore();
+            }
         }
         this.maxInitialScore = score;
     }
 
-    public long getMaxInitialScore() {
+    public long getCurrentScore() {
         return maxInitialScore;
     }
 
