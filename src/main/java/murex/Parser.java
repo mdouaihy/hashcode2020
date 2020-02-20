@@ -66,6 +66,7 @@ final class Parser {
 
             // Sort Library Books by their Scores
             library.sortBooks();
+            library.computeScore(dayCount);
 
             libraries.add(library);
 

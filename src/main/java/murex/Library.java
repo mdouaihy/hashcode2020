@@ -7,7 +7,6 @@
 package murex;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 
 public final class Library {
@@ -23,6 +22,7 @@ public final class Library {
     private final Book[] books;
     private long booksScore;
     private int booksIndex;
+    private long maxInitialScore;
 
     //~ ----------------------------------------------------------------------------------------------------------------
     //~ Constructors
@@ -36,6 +36,7 @@ public final class Library {
         this.books = new Book[booksCount];
         this.booksScore = 0L;
         this.booksIndex = 0;
+        this.maxInitialScore = 0;
     }
 
     //~ ----------------------------------------------------------------------------------------------------------------
@@ -69,6 +70,19 @@ public final class Library {
 
     public long getBooksScore() {
         return booksScore;
+    }
+
+    public void computeScore(int maxDays) {
+        long score = 0;
+        int maxBooks = (dailyShipCapacity * (maxDays - signupCost));
+        for (int i = 0; (i < books.length) && (i < maxBooks); i++) {
+            score += books[i].getScore();
+        }
+        this.maxInitialScore = score;
+    }
+
+    public long getMaxInitialScore() {
+        return maxInitialScore;
     }
 
     void addBook(Book book) {

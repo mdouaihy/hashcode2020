@@ -14,6 +14,7 @@ public final class Book {
 
     private final int id;
     private final int score;
+    private boolean scanned;
 
     //~ ----------------------------------------------------------------------------------------------------------------
     //~ Constructors
@@ -22,6 +23,7 @@ public final class Book {
     public Book(int id, int score) {
         this.id = id;
         this.score = score;
+        this.scanned = false;
     }
 
     //~ ----------------------------------------------------------------------------------------------------------------
@@ -39,5 +41,13 @@ public final class Book {
 
     public int getScore() {
         return score;
+    }
+
+    public boolean isScanned() {
+        return scanned;
+    }
+
+    public void setScanned(boolean scanned) {
+        this.scanned = scanned;
     }
 }
