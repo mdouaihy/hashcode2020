@@ -31,6 +31,7 @@ public class Main {
         String dataSource = "a_example";
 
         URL input = Main.class.getClassLoader().getResource("" + dataSource + ".txt");
+        assert input != null;
         File file = new File(input.getFile());
         BookingSystem bookingSystem = Parser.parse(file);
 

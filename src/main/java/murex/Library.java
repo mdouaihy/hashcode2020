@@ -6,8 +6,8 @@
  */
 package murex;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Comparator;
 
 
 public final class Library {
@@ -20,7 +20,9 @@ public final class Library {
     private final int signupCost;
     private final int booksCount;
     private final int dailyShipCapacity;
-    private final List<Book> books;
+    private final Book[] books;
+    private long booksScore;
+    private int booksIndex;
 
     //~ ----------------------------------------------------------------------------------------------------------------
     //~ Constructors
@@ -31,7 +33,9 @@ public final class Library {
         this.signupCost = signupCost;
         this.booksCount = booksCount;
         this.dailyShipCapacity = dailyShipCapacity;
-        this.books = new ArrayList<>(booksCount);
+        this.books = new Book[booksCount];
+        this.booksScore = 0L;
+        this.booksIndex = 0;
     }
 
     //~ ----------------------------------------------------------------------------------------------------------------
@@ -59,11 +63,21 @@ public final class Library {
         return dailyShipCapacity;
     }
 
-    public List<Book> getBooks() {
+    public Book[] getBooks() {
         return books;
     }
 
+    public long getBooksScore() {
+        return booksScore;
+    }
+
     void addBook(Book book) {
-        books.add(book);
+        booksScore += book.getScore();
+        books[booksIndex] = book;
+        booksIndex++;
+    }
+
+    void sortBooks() {
+        Arrays.sort(books, (o1, o2) -> Integer.compare(o2.getScore(), o1.getScore()));
     }
 }

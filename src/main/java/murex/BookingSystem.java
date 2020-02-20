@@ -18,15 +18,17 @@ public final class BookingSystem {
     private final List<Book> books;
     private final List<Library> libraries;
     private final int days;
+    private final long allScores;
 
     //~ ----------------------------------------------------------------------------------------------------------------
     //~ Constructors
     //~ ----------------------------------------------------------------------------------------------------------------
 
-    public BookingSystem(List<Book> books, List<Library> libraries, int days) {
+    public BookingSystem(List<Book> books, List<Library> libraries, int days, long allScores) {
         this.books = books;
         this.libraries = libraries;
         this.days = days;
+        this.allScores = allScores;
     }
 
     //~ ----------------------------------------------------------------------------------------------------------------
@@ -43,5 +45,9 @@ public final class BookingSystem {
 
     public int getDays() {
         return days;
+    }
+
+    public long getAllScores() {
+        return allScores;
     }
 }

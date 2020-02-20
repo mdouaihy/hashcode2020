@@ -36,8 +36,11 @@ final class Parser {
         // Read Book Scores
         lineTokens = allLines.get(1).split(" ");
         List<Book> books = new ArrayList<>(booksCount);
+        long allScores = 0L;
         for (int bookIndex = 0; bookIndex < booksCount; bookIndex++) {
-            books.add(new Book(bookIndex, Integer.parseInt(lineTokens[bookIndex])));
+            int bookScore = Integer.parseInt(lineTokens[bookIndex]);
+            allScores += bookScore;
+            books.add(new Book(bookIndex, bookScore));
         }
 
         List<Library> libraries = new ArrayList<>(libraryCount);
@@ -60,6 +63,10 @@ final class Parser {
                 Book book = books.get(libBookId);
                 library.addBook(book);
             }
+
+            // Sort Library Books by their Scores
+            library.sortBooks();
+
             libraries.add(library);
 
             currentLine += 2;
@@ -67,6 +74,6 @@ final class Parser {
 
         System.out.println("Reading Photos Ended");
 
-        return new BookingSystem(books, libraries, dayCount);
+        return new BookingSystem(books, libraries, dayCount, allScores);
     }
 }
