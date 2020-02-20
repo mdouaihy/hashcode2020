@@ -7,6 +7,7 @@
 package murex;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -53,6 +54,14 @@ public final class BookingSystem {
     }
 
     public void sortLibrary() {
-        libraries.sort((o1, o2) -> Long.compare(o2.getMaxInitialScore(), o1.getMaxInitialScore()));
+        //libraries.sort((o1, o2) -> Long.compare(o2.getMaxInitialScore(), o1.getMaxInitialScore()));
+        //libraries.sort(Comparator.comparingLong(Library::getSignupCost));
+
+        //J-
+        libraries.sort((o1, o2) -> Long.compare(
+                o2.getMaxInitialScore() - (2 * o2.getDailyShipCapacity() * o2.getSignupCost()),
+                o1.getMaxInitialScore() - (2 * o1.getDailyShipCapacity() * o1.getSignupCost())
+        ));
+        //J+
     }
 }
